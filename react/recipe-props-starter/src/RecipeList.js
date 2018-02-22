@@ -32,7 +32,7 @@ class RecipeList extends Component {
       <Recipe key={index}{...r} />
     ));
     return (
-      <div>
+      <div className='recipe-list'>
         {recipes}
       </div>
     );
