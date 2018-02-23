@@ -25,10 +25,21 @@ class App extends Component {
     setTimeout(() => {
       const randomPerson = Math.floor(Math.random() * this.state.instructors.length);
       const randomHobby = Math.floor(Math.random() * this.state.instructors[randomPerson].hobbies.length);
-      const instructors = this.state.instructors.slice();
-      instructors[randomPerson] = Object.assign({}, instructors[randomPerson]);
-      instructors[randomPerson].hobbies = instructors[randomPerson].hobbies.slice();
-      instructors[randomPerson].hobbies.splice(randomHobby, 1);
+      // const instructors = this.state.instructors.slice();
+      // instructors[randomPerson] = Object.assign({}, instructors[randomPerson]);
+      // instructors[randomPerson].hobbies = instructors[randomPerson].hobbies.slice();
+      // instructors[randomPerson].hobbies.splice(randomHobby, 1);
+      const instructors = this.state.instructors.map((inst, i) => {
+        if (i === randomPerson) {
+          const hobbies = [...inst.hobbies];
+          hobbies.splice(randomHobby, 1);
+          return {
+            ...inst,
+            hobbies
+          };
+        }
+        return inst;
+      });
       this.setState({ instructors });
     }, 5000);
   }
